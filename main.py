@@ -61,7 +61,7 @@ if __name__ == '__main__':
     print(f"* You can enter {F.LIGHTGREEN_EX}Ctrl+C{F.RESET} to stop the process.")
 
     try:
-        hash = input("\nEnter Hash: ")
+        hash = input("\nEnter Hash: ").strip()
         start = time.time()
         password = crack_bcrypt_hash(hash)
         end = time.time()
