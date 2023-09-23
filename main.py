@@ -28,6 +28,9 @@ def crack_bcrypt_hash(hash: str, password_length=1):
         for i in range(len(chars) ** password_length):
             guess = ""
             for j in range(password_length):
+                # Calculate the index for character selection within the character set,
+                # taking into account the current position (j) and password length,
+                # then retrieve and append the selected character to the guess
                 guess += chars[i // (len(chars) ** (password_length - j - 1)) % len(chars)]
                 print(guess)
 
