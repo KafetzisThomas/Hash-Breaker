@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+
 import bcrypt
 from Scripts.generate_passwords import generate_passwords
 
