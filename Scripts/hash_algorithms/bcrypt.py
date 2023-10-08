@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import bcrypt
-from Scripts.generate_passwords import generate_passwords
+from Scripts.gen_pass import generate_passwords
 
 def crack_bcrypt_hash(hash_str, password_length=1):
     """Find & return a matching password for a given bcrypt hash"""

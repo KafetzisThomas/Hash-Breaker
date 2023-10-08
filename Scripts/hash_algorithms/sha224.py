@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import hashlib
-from Scripts.generate_passwords import generate_passwords
+from Scripts.gen_pass import generate_passwords
 
 def crack_sha224_hash(hash_str, password_length=1):
     """Find & return a matching password for a given sha224 hash"""
