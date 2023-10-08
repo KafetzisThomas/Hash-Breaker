@@ -14,6 +14,7 @@ from Scripts.sha1 import crack_sha1_hash
 from Scripts.sha224 import crack_sha224_hash
 from Scripts.sha256 import crack_sha256_hash
 from Scripts.sha384 import crack_sha384_hash
+from Scripts.sha512 import crack_sha512_hash
 
 # Import other (third-party) modules
 import colorama
@@ -40,8 +41,9 @@ print(f"3. SHA-1")
 print(f"4. SHA-224")
 print(f"5. SHA-256")
 print(f"6. SHA-384")
+print(f"7. SHA-512")
 
-try: choice = int(input("\nChoice (1-6): "))
+try: choice = int(input("\nChoice (1-7): "))
 except ValueError:
     print(f"{F.LIGHTRED_EX}* Undefined choice.")
     sys.exit()
@@ -113,6 +115,17 @@ elif choice == 6:
         hash_input = input("Enter Hash: ").strip()
         start = time.time()
         plain_text = crack_sha384_hash(hash_input)
+        end = time.time()
+        time_elapsed = end - start
+    except KeyboardInterrupt:
+        print(f"{F.LIGHTRED_EX}* Operation canceled.")
+        sys.exit()
+elif choice == 7:
+    try:
+        print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-512, otherwise there will be an infinite loop.\n")
+        hash_input = input("Enter Hash: ").strip()
+        start = time.time()
+        plain_text = crack_sha512_hash(hash_input)
         end = time.time()
         time_elapsed = end - start
     except KeyboardInterrupt:
