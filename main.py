@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-# Project Title: Bcrypt-Breaker (https://github.com/KafetzisThomas/Bcrypt-Breaker)
+# Project Title: Hash-Breaker (https://github.com/KafetzisThomas/Hash-Breaker)
 # Author / Project Owner: KafetzisThomas (https://github.com/KafetzisThomas)
 
 # Import built-in modules
@@ -31,7 +31,7 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     print("Error Code U-2: This script requires running python 3.6 or higher! You are running" + str(sys.version_info[0]) + "." + str(sys.version_info[1]))
     sys.exit()
 
-print(text2art("Bcrypt-Breaker"))
+print(text2art("Hash-Breaker"))
 print(f"> Author: {F.LIGHTYELLOW_EX}KafetzisThomas")
 print("-------------------------")
 print(f"* You can enter {F.LIGHTGREEN_EX}Ctrl+C{F.RESET} to stop the process.")
