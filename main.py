@@ -11,6 +11,7 @@ import platform, os, sys, time
 from Scripts.bcrypt import crack_bcrypt_hash
 from Scripts.md5 import crack_md5_hash
 from Scripts.sha1 import crack_sha1_hash
+from Scripts.sha224 import crack_sha224_hash
 
 # Import other (third-party) modules
 import colorama
@@ -33,9 +34,10 @@ print("-------------------------")
 print(f"* You can enter {F.LIGHTGREEN_EX}Ctrl+C{F.RESET} to stop the process.")
 print(f"\n1. Bcrypt")
 print(f"2. MD5")
-print(f"3. SHA1")
+print(f"3. SHA-1")
+print(f"4. SHA-224")
 
-try: choice = int(input("\nChoice (1-2): "))
+try: choice = int(input("\nChoice (1-4): "))
 except ValueError:
     print(f"{F.LIGHTRED_EX}* Undefined choice.")
     sys.exit()
@@ -70,10 +72,21 @@ elif choice == 2:
         sys.exit()
 elif choice == 3:
     try:
-        print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA1, otherwise there will be an infinite loop.\n")
+        print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-1, otherwise there will be an infinite loop.\n")
         hash_input = input("Enter Hash: ").strip()
         start = time.time()
         plain_text = crack_sha1_hash(hash_input)
+        end = time.time()
+        time_elapsed = end - start
+    except KeyboardInterrupt:
+        print(f"{F.LIGHTRED_EX}* Operation canceled.")
+        sys.exit()
+elif choice == 4:
+    try:
+        print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-224, otherwise there will be an infinite loop.\n")
+        hash_input = input("Enter Hash: ").strip()
+        start = time.time()
+        plain_text = crack_sha224_hash(hash_input)
         end = time.time()
         time_elapsed = end - start
     except KeyboardInterrupt:
