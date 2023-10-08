@@ -8,13 +8,13 @@
 import platform, os, sys, time
 
 # Import module files
-from Scripts.bcrypt import crack_bcrypt_hash
-from Scripts.md5 import crack_md5_hash
-from Scripts.sha1 import crack_sha1_hash
-from Scripts.sha224 import crack_sha224_hash
-from Scripts.sha256 import crack_sha256_hash
-from Scripts.sha384 import crack_sha384_hash
-from Scripts.sha512 import crack_sha512_hash
+from Scripts.hash_algorithms.bcrypt import crack_bcrypt_hash
+from Scripts.hash_algorithms.md5 import crack_md5_hash
+from Scripts.hash_algorithms.sha1 import crack_sha1_hash
+from Scripts.hash_algorithms.sha224 import crack_sha224_hash
+from Scripts.hash_algorithms.sha256 import crack_sha256_hash
+from Scripts.hash_algorithms.sha384 import crack_sha384_hash
+from Scripts.hash_algorithms.sha512 import crack_sha512_hash
 
 # Import other (third-party) modules
 import colorama
