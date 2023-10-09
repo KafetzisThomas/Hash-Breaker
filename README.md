@@ -32,3 +32,11 @@ pip install -r requirements.txt
       ```
       chmod +x main.py
       ```
+
+# Disclaimer: Educational Use Only
+
+**Hash-Breaker** is an educational tool designed for learning and understanding cryptographic concepts related to hash functions and password security. It is NOT intended for malicious activities, unauthorized access, or any form of unethical use.
+
+By accessing and using Hash-Breaker, you acknowledge and agree to the terms outlined in this disclaimer. The repository owner and contributors are not responsible for any misuse, damage, or legal consequences resulting from the use of this tool.
+
+Please use Hash-Breaker responsibly and for educational purposes only.
