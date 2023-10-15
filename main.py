@@ -45,26 +45,52 @@ print(f"5. SHA-256  ({F.LIGHTYELLOW_EX}MODERATE{F.RESET})")
 print(f"6. SHA-384  ({F.LIGHTYELLOW_EX}MODERATE{F.RESET})")
 print(f"7. SHA-512  ({F.LIGHTYELLOW_EX}MODERATE{F.RESET})")
 
-try:
-    choice = int(input("\nChoice (1-7): "))
-    wordlist = input("Type path for wordlist [Enter] to skip this step\n")
-    if wordlist and os.path.exists(os.path.dirname(wordlist)):
-        with_wordlist = True
-    else:
-        with_wordlist = False
-except ValueError:
-    print(f"{F.LIGHTRED_EX}* Undefined choice.")
-    sys.exit()
-except KeyboardInterrupt:
-    print(f"\n{F.LIGHTCYAN_EX}* Exiting...")
-    sys.exit()
-
-if choice == 1:
+def get_user_input():
     try:
-        print(f"* Please, remove {F.LIGHTBLUE_EX}b''{F.RESET} when you specify the hash.\n")
-        hash_input = input("Enter Hash: ").strip()
+        choice = int(input("\nChoice (1-7): "))
+        wordlist = input("Type path for wordlist [Enter] to skip this step\n")
+        if wordlist and os.path.exists(os.path.dirname(wordlist)):
+            with_wordlist = True
+        else:
+            with_wordlist = False
+    except ValueError:
+        print(f"{F.LIGHTRED_EX}* Undefined choice.")
+        sys.exit()
+    except KeyboardInterrupt:
+        print(f"\n{F.LIGHTCYAN_EX}* Exiting...")
+        sys.exit()
+    
+    return choice, with_wordlist, wordlist
+
+def get_hash_input_and_crack(choice, with_wordlist, wordlist):
+    try:
+        hash_input = input(f"* Enter {F.LIGHTBLUE_EX}Hash{F.RESET}: ").strip()
         start = time.time()
-        plain_text = crack_bcrypt_hash(hash_input)
+
+        if choice == 1:
+            plain_text = crack_bcrypt_hash(hash_input)
+        elif choice == 2:
+            print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is MD5, otherwise there will be an infinite loop.\n")
+            plain_text = crack_md5_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+        elif choice == 3:
+            print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-1, otherwise there will be an infinite loop.\n")
+            plain_text = crack_sha1_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+        elif choice == 4:
+            print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-224, otherwise there will be an infinite loop.\n")
+            plain_text = crack_sha224_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+        elif choice == 5:
+            print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-256, otherwise there will be an infinite loop.\n")
+            plain_text = crack_sha256_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+        elif choice == 6:
+            print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-384, otherwise there will be an infinite loop.\n")
+            plain_text = crack_sha384_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+        elif choice == 7:
+            print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-512, otherwise there will be an infinite loop.\n")
+            plain_text = crack_sha512_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+        else:
+            print(f"\n{F.LIGHTRED_EX}* Undefined choice.")
+            sys.exit()
+
         end = time.time()
         time_elapsed = end - start
     except ValueError as err:
@@ -73,76 +99,11 @@ if choice == 1:
     except KeyboardInterrupt:
         print(f"{F.LIGHTRED_EX}* Operation canceled.")
         sys.exit()
-elif choice == 2:
-    try:
-        print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is MD5, otherwise there will be an infinite loop.\n")
-        hash_input = input("Enter Hash: ").strip()
-        start = time.time()
-        plain_text = crack_md5_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-        end = time.time()
-        time_elapsed = end - start
-    except KeyboardInterrupt:
-        print(f"{F.LIGHTRED_EX}* Operation canceled.")
-        sys.exit()
-elif choice == 3:
-    try:
-        print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-1, otherwise there will be an infinite loop.\n")
-        hash_input = input("Enter Hash: ").strip()
-        start = time.time()
-        plain_text = crack_sha1_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-        end = time.time()
-        time_elapsed = end - start
-    except KeyboardInterrupt:
-        print(f"{F.LIGHTRED_EX}* Operation canceled.")
-        sys.exit()
-elif choice == 4:
-    try:
-        print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-224, otherwise there will be an infinite loop.\n")
-        hash_input = input("Enter Hash: ").strip()
-        start = time.time()
-        plain_text = crack_sha224_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-        end = time.time()
-        time_elapsed = end - start
-    except KeyboardInterrupt:
-        print(f"{F.LIGHTRED_EX}* Operation canceled.")
-        sys.exit()
-elif choice == 5:
-    try:
-        print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-256, otherwise there will be an infinite loop.\n")
-        hash_input = input("Enter Hash: ").strip()
-        start = time.time()
-        plain_text = crack_sha256_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-        end = time.time()
-        time_elapsed = end - start
-    except KeyboardInterrupt:
-        print(f"{F.LIGHTRED_EX}* Operation canceled.")
-        sys.exit()
-elif choice == 6:
-    try:
-        print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-384, otherwise there will be an infinite loop.\n")
-        hash_input = input("Enter Hash: ").strip()
-        start = time.time()
-        plain_text = crack_sha384_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-        end = time.time()
-        time_elapsed = end - start
-    except KeyboardInterrupt:
-        print(f"{F.LIGHTRED_EX}* Operation canceled.")
-        sys.exit()
-elif choice == 7:
-    try:
-        print(f"* Make sure your {F.LIGHTBLUE_EX}hash{F.RESET} is SHA-512, otherwise there will be an infinite loop.\n")
-        hash_input = input("Enter Hash: ").strip()
-        start = time.time()
-        plain_text = crack_sha512_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-        end = time.time()
-        time_elapsed = end - start
-    except KeyboardInterrupt:
-        print(f"{F.LIGHTRED_EX}* Operation canceled.")
-        sys.exit()
-else:
-    print(f"\n{F.LIGHTRED_EX}* Undefined choice.")
-    sys.exit()
 
+    return plain_text, time_elapsed
+
+choice, with_wordlist, wordlist = get_user_input()
+plain_text, time_elapsed = get_hash_input_and_crack(choice, with_wordlist, wordlist)
 
 print(f"Password Found: {B.LIGHTRED_EX}{F.BLACK} {plain_text} ")
 print(f"Time elapsed: {time_elapsed:.1f}s")
