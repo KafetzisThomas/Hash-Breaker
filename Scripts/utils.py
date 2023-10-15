@@ -71,6 +71,9 @@ def get_hash_input_and_crack(choice, with_wordlist, wordlist):
     except ValueError as err:
         print(f"{F.LIGHTRED_EX}* Unidentifiable hash: {err}.")
         sys.exit()
+    except FileNotFoundError as err:
+        print(err)
+        sys.exit()
     except KeyboardInterrupt:
         print(f"n{F.LIGHTRED_EX}* Operation canceled.")
         sys.exit()
