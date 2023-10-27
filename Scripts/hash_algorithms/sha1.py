@@ -12,7 +12,6 @@ def crack_sha1_hash(hash_str, wordlist, password_length=1, with_wordlist=False):
                 # Check if the generated password matches the hash
                 if hashlib.sha1(guess.encode('utf-8')).hexdigest() == hash_str:
                     return guess
-                print(guess)
 
             password_length += 1  # If no match is found, increase the password length
     else:
@@ -20,4 +19,3 @@ def crack_sha1_hash(hash_str, wordlist, password_length=1, with_wordlist=False):
             for line in file.readlines():
                 if hashlib.sha1(line.strip().encode('utf-8')).hexdigest() == hash_str:
                     return line.strip()
-                print(line.strip())
