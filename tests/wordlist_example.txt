@@ -1,0 +1,11 @@
+apple
+banana
+cherry
+dog
+a
+elephant
+flower
+garden
+happy
+island
+jump

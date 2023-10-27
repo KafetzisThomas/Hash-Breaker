@@ -43,7 +43,7 @@ def get_hash_input_and_crack(choice, with_wordlist, wordlist):
         start = time.time()
 
         if hash_input:
-            if choice == 1: plain_text = crack_bcrypt_hash(hash_input)
+            if choice == 1: plain_text = crack_bcrypt_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
             elif choice == 2: plain_text = crack_md5_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
             elif choice == 3: plain_text = crack_sha1_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
             elif choice == 4: plain_text = crack_sha224_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
