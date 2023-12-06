@@ -44,15 +44,13 @@ def get_hash_input_and_crack(choice, with_wordlist, wordlist):
 
         if hash_input:
             if choice == 1: plain_text = crack_bcrypt_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-            elif choice == 2: plain_text = crack_md5_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-            elif choice == 3: plain_text = crack_sha1_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-            elif choice == 4: plain_text = crack_sha224_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-            elif choice == 5: plain_text = crack_sha256_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-            elif choice == 6: plain_text = crack_sha384_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-            elif choice == 7: plain_text = crack_sha512_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
-            else:
-                print(f"\n{F.LIGHTRED_EX}[*] Undefined choice.")
-                sys.exit()
+            elif choice == 2 and len(hash_input) == 32: plain_text = crack_md5_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+            elif choice == 3 and len(hash_input) == 40: plain_text = crack_sha1_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+            elif choice == 4 and len(hash_input) == 56: plain_text = crack_sha224_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+            elif choice == 5 and len(hash_input) == 64: plain_text = crack_sha256_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+            elif choice == 6 and len(hash_input) == 96: plain_text = crack_sha384_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+            elif choice == 7 and len(hash_input) == 128: plain_text = crack_sha512_hash(hash_input, with_wordlist=with_wordlist, wordlist=wordlist)
+            else: print(f"{F.LIGHTRED_EX}[*] Unidentifiable hash."), sys.exit()
         else:
             print(f"{F.LIGHTRED_EX}[*] Error: Invalid hash input.")
             sys.exit()
