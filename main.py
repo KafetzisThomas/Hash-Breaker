@@ -12,6 +12,7 @@ import platform, os, sys
 # Import module files
 from Scripts.utils import get_user_input
 from Scripts.utils import get_hash_input_and_crack
+from Scripts.arguments import command_line_arguments
 
 # Import other (third-party) modules
 import colorama
@@ -27,6 +28,15 @@ os.system(clear_command)  # Clear console
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     print("Error Code U-2: This script requires running python 3.6 or higher! You are running" + str(sys.version_info[0]) + "." + str(sys.version_info[1]))
     sys.exit()
+
+# Each call attempts to crack a hash specified via command line arguments
+command_line_arguments("bcrypt")
+command_line_arguments("md5")
+command_line_arguments("sha1")
+command_line_arguments("sha224")
+command_line_arguments("sha256")
+command_line_arguments("sha384")
+command_line_arguments("sha512")
 
 print(text2art("Hash-Breaker"))
 print(f"> Author: {F.LIGHTYELLOW_EX}KafetzisThomas")

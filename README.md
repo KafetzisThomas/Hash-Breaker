@@ -16,9 +16,10 @@ pip install -r requirements.txt
 
 ## Features
 
-* Supports Bcrypt, MD5, SHA1, SHA224, SHA256, SHA384, SHA512
+* Supports: Bcrypt, MD5, SHA1, SHA224, SHA256, SHA384, SHA512
 * Dynamic password generation: Generate all possible combinations of characters until a match is found
 * Dictionary support
+* Command-Line Arguments
 
 ## Usage Notes - READ THIS
 
@@ -29,9 +30,21 @@ pip install -r requirements.txt
    __Mac/Linux:__
    ``` ./main.py ```
    * __For Mac/Linux:__ Make sure you make it executable with the following command:
-      ```
-      chmod +x main.py
-      ```
+      ``` chmod +x main.py ```
+
+# Command-Line Arguments
+
+When running the script with command-line arguments, ensure that you use the following supported options:
+
+``` python3 main.py <hash_algorithm> '<hash_str>' '<wordlist_path>' --with-wordlist ```
+
+Supported Arguments:
+* `<hash_algorithm>`: Specify the hash algorithm to use for cracking. Choose from Bcrypt, MD5, SHA1, SHA224, SHA256, SHA384, or SHA512.
+* `<hash_str>`: Provide the hash string that you want to crack using the selected hash algorithm.
+* `<wordlist_path>`: (Optional) Specify the path to a custom wordlist file for dictionary-based cracking.
+* `--with-wordlist`: (Optional) Include this flag to enable dictionary-based cracking using the provided wordlist.
+
+Note: The arguments `<wordlist_path>` and `--with-wordlist` are optional. You can choose to use them based on your specific cracking requirements.
 
 # Run Tests
 
