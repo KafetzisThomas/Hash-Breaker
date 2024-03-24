@@ -33,6 +33,12 @@ pip install -r requirements.txt
       chmod +x main.py
       ```
 
+# Run Tests
+
+Navigate to the **root directory** of the repository where the testing files are stored and run the following command to run all tests at once:
+
+``` python3 -m unittest discover tests ```
+
 # Disclaimer: Educational Use Only
 
 **Hash-Breaker** is an educational tool designed for learning and understanding cryptographic concepts related to hash functions and password security. It is NOT intended for malicious activities, unauthorized access, or any form of unethical use.
