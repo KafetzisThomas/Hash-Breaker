@@ -44,7 +44,7 @@ Supported Arguments:
 * `<wordlist_path>`: (Optional) Specify the path to a custom wordlist file for dictionary-based cracking.
 * `--with-wordlist`: (Optional) Include this flag to enable dictionary-based cracking using the provided wordlist.
 
-Note: The arguments `<wordlist_path>` and `--with-wordlist` are optional. You can choose to use them based on your specific cracking requirements.
+**Note**: The arguments `<wordlist_path>` and `--with-wordlist` are optional. You can choose to use them based on your specific cracking requirements.
 
 # Run Tests
 
