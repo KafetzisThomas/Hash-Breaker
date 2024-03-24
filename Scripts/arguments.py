@@ -14,13 +14,13 @@ from colorama import Fore as F, Back as B
 
 def command_line_arguments(hash_algorithm):
     hash_algorithms = {
-        "-bcrypt": crack_bcrypt_hash,
-        "-md5": crack_md5_hash,
-        "-sha1": crack_sha1_hash,
-        "-sha224": crack_sha224_hash,
-        "-sha256": crack_sha256_hash,
-        "-sha384": crack_sha384_hash,
-        "-sha512": crack_sha512_hash
+        "bcrypt": crack_bcrypt_hash,
+        "md5": crack_md5_hash,
+        "sha1": crack_sha1_hash,
+        "sha224": crack_sha224_hash,
+        "sha256": crack_sha256_hash,
+        "sha384": crack_sha384_hash,
+        "sha512": crack_sha512_hash
     }
 
     try:

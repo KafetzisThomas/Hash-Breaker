@@ -30,13 +30,13 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     sys.exit()
 
 # Each call attempts to crack a hash specified via command line arguments
-command_line_arguments("-bcrypt")
-command_line_arguments("-md5")
-command_line_arguments("-sha1")
-command_line_arguments("-sha224")
-command_line_arguments("-sha256")
-command_line_arguments("-sha384")
-command_line_arguments("-sha512")
+command_line_arguments("bcrypt")
+command_line_arguments("md5")
+command_line_arguments("sha1")
+command_line_arguments("sha224")
+command_line_arguments("sha256")
+command_line_arguments("sha384")
+command_line_arguments("sha512")
 
 print(text2art("Hash-Breaker"))
 print(f"> Author: {F.LIGHTYELLOW_EX}KafetzisThomas")
