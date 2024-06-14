@@ -4,6 +4,7 @@ from Scripts.hash_algorithms.bcrypt import crack_bcrypt_hash
 
 hash = "$2b$12$.pdcdWnjEA/2GOvHfEfMkupP/BXSsdJjLs5Sh63E0B/5JG/YeB9cu"
 
+
 class TestCrackBcryptHash(unittest.TestCase):
     """Tests for crack_bcrypt_hash() function"""
 
@@ -15,7 +16,6 @@ class TestCrackBcryptHash(unittest.TestCase):
         with_wordlist = True
 
         result = crack_bcrypt_hash(hash, wordlist, password_length, with_wordlist)
-        print(result)
         expected_result = "a"
 
         self.assertEqual(result, expected_result)
@@ -31,5 +31,6 @@ class TestCrackBcryptHash(unittest.TestCase):
 
         self.assertEqual(result, expected_result)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
