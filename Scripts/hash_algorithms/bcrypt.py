@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
+import sys
 import bcrypt
 from Scripts.gen_pass import generate_passwords
 
@@ -24,4 +25,5 @@ def crack_bcrypt_hash(hash_str, wordlist, password_length=1, with_wordlist=False
                     ):
                         return line.strip()
         except FileNotFoundError:
-            print(f"[!] Wordlist file not found: {wordlist}")
+            print(f"[*] Wordlist file not found: {wordlist}")
+            sys.exit()
