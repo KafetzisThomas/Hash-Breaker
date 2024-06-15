@@ -33,7 +33,7 @@ To use the script, follow these steps in your terminal:
 ➜ wordlist_file=common_passwords.txt  # Path to wordlist file
 
 # Using Hash-Breaker with a wordlist
-$ python main.py bcrypt "$hash_to_crack" "$wordlist_path" --with-wordlist
+$ python main.py bcrypt '$hash_to_crack' '$wordlist_path' --wordlist
 
 # Output:
 # ...
@@ -47,7 +47,7 @@ $ python main.py bcrypt "$hash_to_crack" "$wordlist_path" --with-wordlist
 ➜ hash_to_crack='e1608f75c5d7813f3d4031cb30bfb786507d98137538ff8e128a6ff74e84e643'  # Example SHA256 hash
 
 # Using Hash-Breaker with dynamic password generation
-$ python main.py sha256 "$hash_to_crack"
+$ python main.py sha256 '$hash_to_crack'
 
 # Output:
 # ...
@@ -63,13 +63,43 @@ $ python main.py sha256 "$hash_to_crack"
 ➜ md5_hash =  # Replace with an example MD5 hash
 
 # Cracking a SHA512 hash
-$ python main.py sha512 "$sha512_hash" "$wordlist_file" --with-wordlist 
+$ python main.py sha512 '$sha512_hash' '$wordlist_file' --wordlist 
 
 # Cracking a SHA1 hash
-$ python main.py sha1 "$sha1_hash" 
+$ python main.py sha1 '$sha1_hash'
 
 # Cracking a MD5 hash
-$ python main.py md5 "$md5_hash" "$wordlist_file" --with-wordlist 
+$ python main.py md5 '$md5_hash' '$wordlist_file' --wordlist 
+```
+
+### Example 4: Customizing the character set for dynamic generation:
+
+```bash
+➜ hash_to_crack =  # Replace with an example hash
+
+# Using a custom character set for dynamic generation
+$ python main.py sha256 '$hash_to_crack' 'atcdIQRsoTpUVZ01m5678' --charset 
+
+# Output:
+# ...
+# Password Found: [ pass1 ]
+# Time elapsed: 3.4s
+```
+
+### Example 5: Handling errors and understanding the output:
+
+```bash
+# Incorrect hash algorithm
+$ python main.py md4 '$hash_to_crack'
+
+# Output:
+# [*] Unsupported hash algorithm: md4
+
+# Invalid wordlist path
+$ python main.py md5 '$hash_to_crack' 'invalid_wordlist.txt' --wordlist
+
+# Output:
+# [*] Wordlist file not found: invalid_wordlist.txt
 ```
 
 ## Run Tests
