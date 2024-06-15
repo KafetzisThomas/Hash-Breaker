@@ -25,7 +25,8 @@ def command_line_arguments(hash_algorithm):
     }
 
     if 0 < len(sys.argv) < 6:  # Max allowed args: 5
-        if sys.argv[1] == hash_algorithm:
+        hash_algorithm = sys.argv[1]
+        if hash_algorithm in hash_algorithms:
             hash_str = sys.argv[2]
             wordlist = None
             with_wordlist = False
@@ -43,6 +44,9 @@ def command_line_arguments(hash_algorithm):
                     f"Password Found: {B.LIGHTRED_EX}{F.BLACK} {plain_text} {F.RESET}{B.RESET}"
                 )
                 print(f"Time elapsed: {time_elapsed:.1f}s")
+            sys.exit()
+        else:
+            print(f"[!] Unsupported hash algorithm: {hash_algorithm}")
             sys.exit()
     else:
         print(
