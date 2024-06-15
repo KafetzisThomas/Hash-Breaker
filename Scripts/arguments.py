@@ -12,6 +12,7 @@ from Scripts.hash_algorithms.sha384 import crack_sha384_hash
 from Scripts.hash_algorithms.sha512 import crack_sha512_hash
 from colorama import Fore as F, Back as B
 
+
 def command_line_arguments(hash_algorithm):
     hash_algorithms = {
         "bcrypt": crack_bcrypt_hash,
@@ -20,10 +21,10 @@ def command_line_arguments(hash_algorithm):
         "sha224": crack_sha224_hash,
         "sha256": crack_sha256_hash,
         "sha384": crack_sha384_hash,
-        "sha512": crack_sha512_hash
+        "sha512": crack_sha512_hash,
     }
 
-    try:
+    if 0 < len(sys.argv) < 6:  # Max allowed args: 5
         if sys.argv[1] == hash_algorithm:
             hash_str = sys.argv[2]
             wordlist = None
@@ -32,12 +33,19 @@ def command_line_arguments(hash_algorithm):
                 wordlist = sys.argv[3]
                 with_wordlist = True
             start = time.time()
-            plain_text = hash_algorithms[hash_algorithm](hash_str=hash_str, wordlist=wordlist, with_wordlist=with_wordlist)
+            plain_text = hash_algorithms[hash_algorithm](
+                hash_str=hash_str, wordlist=wordlist, with_wordlist=with_wordlist
+            )
             end = time.time()
             time_elapsed = end - start
             if plain_text:
-                print(f"Password Found: {B.LIGHTRED_EX}{F.BLACK} {plain_text} {F.RESET}{B.RESET}")
+                print(
+                    f"Password Found: {B.LIGHTRED_EX}{F.BLACK} {plain_text} {F.RESET}{B.RESET}"
+                )
                 print(f"Time elapsed: {time_elapsed:.1f}s")
             sys.exit()
-    except IndexError:
-        pass
+    else:
+        print(
+            "[!] Usage: python3 main.py <hash_algo> '<hash_to_crack>' ['<wordlist_path>' --with-wordlist]"
+        )
+        sys.exit()
