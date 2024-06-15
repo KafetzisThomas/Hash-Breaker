@@ -11,47 +11,13 @@ import time
 import colorama
 from colorama import Fore as F, Back as B
 from Scripts.hash_algorithms.bcrypt import crack_bcrypt_hash
-from Scripts.hash_algorithms.md5 import crack_md5_hash
-from Scripts.hash_algorithms.sha1 import crack_sha1_hash
-from Scripts.hash_algorithms.sha224 import crack_sha224_hash
-from Scripts.hash_algorithms.sha256 import crack_sha256_hash
-from Scripts.hash_algorithms.sha384 import crack_sha384_hash
-from Scripts.hash_algorithms.sha512 import crack_sha512_hash
+from Scripts.hash_algorithms.sha_hash import crack_sha_hash
 
 # Initialize colorama for colored output
 colorama.init(autoreset=True)
 
 # Dictionary mapping hash algorithm names to their respective functions
-hash_algorithms = {
-    "bcrypt": crack_bcrypt_hash,
-    "md5": crack_md5_hash,
-    "sha1": crack_sha1_hash,
-    "sha224": crack_sha224_hash,
-    "sha256": crack_sha256_hash,
-    "sha384": crack_sha384_hash,
-    "sha512": crack_sha512_hash,
-}
-
-
-def crack_hash(hash_algorithm, hash_str, wordlist, with_wordlist):
-    """Crack a given hash using the specified algorithm."""
-    if hash_algorithm in hash_algorithms:
-        start_time = time.time()
-        plain_text = hash_algorithms[hash_algorithm](
-            hash_str=hash_str,
-            wordlist=wordlist,
-            with_wordlist=with_wordlist,
-        )
-        end_time = time.time()
-        time_elapsed = end_time - start_time
-
-        if plain_text:
-            print(
-                f"Password Found: {B.LIGHTRED_EX}{F.BLACK} {plain_text} {F.RESET}{B.RESET}"
-            )
-            print(f"Time elapsed: {time_elapsed:.1f}s")
-    else:
-        print(f"[*] Unsupported hash algorithm: {hash_algorithm}")
+hash_algorithms = ["bcrypt", "md5", "sha1", "sha224", "sha256", "sha384", "sha512"]
 
 
 def commandline_args():
@@ -65,7 +31,27 @@ def commandline_args():
         wordlist = sys.argv[3]
         with_wordlist = True
 
-    crack_hash(hash_algorithm, hash_str, wordlist, with_wordlist)
+    if hash_algorithm in hash_algorithms:
+        if hash_algorithm == "bcrypt":
+            start_time = time.time()
+            plain_text = crack_bcrypt_hash(hash_str, wordlist, with_wordlist)
+            end_time = time.time()
+            time_elapsed = end_time - start_time
+        else:
+            start_time = time.time()
+            plain_text = crack_sha_hash(
+                hash_algorithm, hash_str, wordlist, with_wordlist
+            )
+            end_time = time.time()
+            time_elapsed = end_time - start_time
+
+        if plain_text:
+            print(
+                f"Password Found: {B.LIGHTRED_EX}{F.BLACK} {plain_text} {F.RESET}{B.RESET}"
+            )
+            print(f"Time elapsed: {time_elapsed:.1f}s")
+    else:
+        print(f"[*] Unsupported hash algorithm: {hash_algorithm}")
 
 
 if __name__ == "__main__":
