@@ -50,8 +50,6 @@ def crack_hash(hash_algorithm, hash_str, wordlist, with_wordlist):
                 f"Password Found: {B.LIGHTRED_EX}{F.BLACK} {plain_text} {F.RESET}{B.RESET}"
             )
             print(f"Time elapsed: {time_elapsed:.1f}s")
-        else:
-            print("Password not found.")
     else:
         print(f"[*] Unsupported hash algorithm: {hash_algorithm}")
 

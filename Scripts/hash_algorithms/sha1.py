@@ -17,6 +17,7 @@ def crack_sha1_hash(hash_str, wordlist, password_length=1, with_wordlist=False):
 
             password_length += 1  # If no match is found, increase the password length
     else:
+        wordlist_found = False
         try:
             with open(wordlist, "r") as file:
                 for line in file.readlines():
@@ -24,7 +25,10 @@ def crack_sha1_hash(hash_str, wordlist, password_length=1, with_wordlist=False):
                         hashlib.sha1(line.strip().encode("utf-8")).hexdigest()
                         == hash_str
                     ):
+                        wordlist_found = True
                         return line.strip()
+
+            if not wordlist_found:
+                print(f"[*] No matching password found in {wordlist}")
         except FileNotFoundError:
             print(f"[*] Wordlist file not found: {wordlist}")
-            sys.exit()
