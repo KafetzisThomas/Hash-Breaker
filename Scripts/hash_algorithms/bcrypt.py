@@ -5,11 +5,20 @@ import bcrypt
 from Scripts.gen_pass import generate_passwords
 
 
-def crack_bcrypt_hash(hash_str, wordlist, password_length=1, with_wordlist=False):
+def crack_bcrypt_hash(
+    hash_str,
+    wordlist,
+    custom_charset,
+    password_length=1,
+    with_wordlist=False,
+    with_custom_charset=False,
+):
     """Find & return a matching password for a given bcrypt hash"""
     if not with_wordlist:
         while True:
-            for guess in generate_passwords(password_length):
+            for guess in generate_passwords(
+                password_length, custom_charset, with_custom_charset
+            ):
                 # Check if the generated password matches the hash
                 if bcrypt.checkpw(guess.encode("utf-8"), hash_str.encode("utf-8")):
                     return guess

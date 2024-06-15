@@ -26,21 +26,38 @@ def commandline_args():
     hash_str = sys.argv[2]
     wordlist = None
     with_wordlist = False
+    custom_charset = None
+    with_custom_charset = False
 
-    if "--with-wordlist" in sys.argv:
+    if "--wordlist" in sys.argv:
         wordlist = sys.argv[3]
         with_wordlist = True
+
+    if "--charset" in sys.argv:
+        custom_charset = sys.argv[3]
+        with_custom_charset = True
 
     if hash_algorithm in hash_algorithms:
         if hash_algorithm == "bcrypt":
             start_time = time.time()
-            plain_text = crack_bcrypt_hash(hash_str, wordlist, with_wordlist)
+            plain_text = crack_bcrypt_hash(
+                hash_str=hash_str,
+                wordlist=wordlist,
+                custom_charset=custom_charset,
+                with_wordlist=with_wordlist,
+                with_custom_charset=with_custom_charset,
+            )
             end_time = time.time()
             time_elapsed = end_time - start_time
         else:
             start_time = time.time()
             plain_text = crack_sha_hash(
-                hash_algorithm, hash_str, wordlist, with_wordlist
+                hash_type=hash_algorithm,
+                hash_str=hash_str,
+                wordlist=wordlist,
+                custom_charset=custom_charset,
+                with_wordlist=with_wordlist,
+                with_custom_charset=with_custom_charset,
             )
             end_time = time.time()
             time_elapsed = end_time - start_time
