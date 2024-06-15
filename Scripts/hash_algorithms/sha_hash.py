@@ -1,12 +1,14 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+
 import hashlib
-import sys
 from Scripts.gen_pass import generate_passwords
 
 
 def crack_sha_hash(
     hash_type, hash_str, wordlist=None, password_length=1, with_wordlist=False
 ):
-    """Find & return a matching password for a given hash (sha1, sha224, etc.)."""
+    """Find & return a matching password for a given sha type of hash (sha1, sha224, etc.)."""
     hash_func = getattr(hashlib, hash_type)
 
     if not with_wordlist:
