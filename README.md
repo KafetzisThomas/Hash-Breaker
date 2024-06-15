@@ -25,18 +25,7 @@ $ pip install -r requirements.txt
 
 To use the script, follow these steps in your terminal:
 
-```bash
-# Windows
-python main.py
-
-# Linux/Mac
-chmod +x main.py
-./main.py
-```
-
-# Command-Line Arguments
-
-## Example 1: Cracking a hash with a wordlist:
+### Example 1: Cracking a hash with a wordlist:
 
 ```bash
 
@@ -52,7 +41,7 @@ $ python main.py bcrypt "$hash_to_crack" "$wordlist_path" --with-wordlist
 # Time elapsed: 3.1s
 ```
 
-## Example 2: Cracking a hash with dynamic password generation:
+### Example 2: Cracking a hash with dynamic password generation:
 
 ```bash
 ➜ hash_to_crack='e1608f75c5d7813f3d4031cb30bfb786507d98137538ff8e128a6ff74e84e643'  # Example SHA256 hash
@@ -66,7 +55,7 @@ $ python main.py sha256 "$hash_to_crack"
 # Time elapsed: 0.5s
 ```
 
-## Example 3: Using different hash algorithms:
+### Example 3: Using different hash algorithms:
 
 ```bash
 ➜ sha512_hash =  # Replace with an example SHA512 hash
@@ -83,14 +72,14 @@ $ python main.py sha1 "$sha1_hash"
 $ python main.py md5 "$md5_hash" "$wordlist_file" --with-wordlist 
 ```
 
-# Run Tests
+## Run Tests
 
 ```bash
 ➜ cd path/to/script/directory
 $ python -m unittest discover tests
 ```
 
-# Disclaimer: Educational Use Only
+## Disclaimer: Educational Use Only
 
 **Hash-Breaker** is an educational tool designed for `learning` and `understanding cryptographic concepts` related to hash functions and password security. It is NOT intended for malicious activities, unauthorized access, or any form of unethical use.
 
