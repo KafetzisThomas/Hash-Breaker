@@ -16,10 +16,12 @@ $ pip install -r requirements.txt
 
 ## Features
 
+* Operates entirely via command-line arguments
 * Supported hash algorithms: `Bcrypt`, `MD5`, `SHA1`, `SHA224`, `SHA256`, `SHA384`, `SHA512`
-* Dynamic password generation: Generate all possible combinations of characters until a match is found
+* Dynamic password generation: 
+    * Generate all possible combinations of characters until a match is found
+    * Customize the character set
 * Dictionary support
-* Command-Line Arguments
 
 ## Usage Notes
 
