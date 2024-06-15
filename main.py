@@ -56,21 +56,16 @@ def crack_hash(hash_algorithm, hash_str, wordlist, with_wordlist):
 
 def commandline_args():
     """Handle command-line arguments to crack hashes."""
-    if 0 < len(sys.argv) < 6:
-        hash_algorithm = sys.argv[1]
-        hash_str = sys.argv[2]
-        wordlist = None
-        with_wordlist = False
+    hash_algorithm = sys.argv[1]
+    hash_str = sys.argv[2]
+    wordlist = None
+    with_wordlist = False
 
-        if "--with-wordlist" in sys.argv:
-            wordlist = sys.argv[3]
-            with_wordlist = True
+    if "--with-wordlist" in sys.argv:
+        wordlist = sys.argv[3]
+        with_wordlist = True
 
-        crack_hash(hash_algorithm, hash_str, wordlist, with_wordlist)
-    else:
-        print(
-            "[*] Usage: python3 main.py <hash_algo> '<hash_to_crack>' ['<wordlist_path>' --with-wordlist]"
-        )
+    crack_hash(hash_algorithm, hash_str, wordlist, with_wordlist)
 
 
 if __name__ == "__main__":
@@ -83,10 +78,14 @@ if __name__ == "__main__":
         )
         sys.exit()
 
-    try:
-        commandline_args()
-    except IndexError:
+    if 1 < len(sys.argv) < 6:
+        try:
+            commandline_args()
+        except IndexError:
+            print(
+                "[*] Usage: python3 main.py <hash_algo> '<hash_to_crack>' ['<wordlist_path>' --with-wordlist]"
+            )
+    else:
         print(
             "[*] Usage: python3 main.py <hash_algo> '<hash_to_crack>' ['<wordlist_path>' --with-wordlist]"
         )
-        sys.exit()
