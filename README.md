@@ -40,6 +40,7 @@ $ python main.py bcrypt '$hash_to_crack' '$wordlist_path' --wordlist
 # Output:
 # ...
 # Password Found: [ a ]
+# Total attempts: 4
 # Time elapsed: 3.1s
 ```
 
@@ -54,7 +55,8 @@ $ python main.py sha256 '$hash_to_crack'
 # Output:
 # ...
 # Password Found: [ tom ]
-# Time elapsed: 0.5s
+# Total attempts: 302523
+# Time elapsed: 9.3s
 ```
 
 ### Example 3: Using different hash algorithms:
@@ -65,13 +67,13 @@ $ python main.py sha256 '$hash_to_crack'
 ➜ md5_hash =  # Replace with an example MD5 hash
 
 # Cracking a SHA512 hash
-$ python main.py sha512 '$sha512_hash' '$wordlist_file' --wordlist 
+$ python main.py sha512 '$sha512_hash' '$wordlist_file' --wordlist
 
 # Cracking a SHA1 hash
 $ python main.py sha1 '$sha1_hash'
 
 # Cracking a MD5 hash
-$ python main.py md5 '$md5_hash' '$wordlist_file' --wordlist 
+$ python main.py md5 '$md5_hash' '$wordlist_file' --wordlist
 ```
 
 ### Example 4: Customizing the character set for dynamic generation:
@@ -80,12 +82,13 @@ $ python main.py md5 '$md5_hash' '$wordlist_file' --wordlist
 ➜ hash_to_crack =  # Replace with an example hash
 
 # Using a custom character set for dynamic generation
-$ python main.py sha256 '$hash_to_crack' 'atcdIQRsoTpUVZ01m5678' --charset 
+$ python main.py sha256 '$hash_to_crack' 'atcdIQRsoTpUVZ01m5678' --charset
 
 # Output:
 # ...
 # Password Found: [ pass1 ]
-# Time elapsed: 3.4s
+# Total attempts: 2152264
+# Time elapsed: 67.6s
 ```
 
 ### Example 5: Handling errors and understanding the output:
