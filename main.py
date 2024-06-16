@@ -40,7 +40,7 @@ def commandline_args():
     if hash_algorithm in hash_algorithms:
         if hash_algorithm == "bcrypt":
             start_time = time.time()
-            plain_text = crack_bcrypt_hash(
+            plain_text, total_attempts = crack_bcrypt_hash(
                 hash_str=hash_str,
                 wordlist=wordlist,
                 custom_charset=custom_charset,
@@ -51,7 +51,7 @@ def commandline_args():
             time_elapsed = end_time - start_time
         else:
             start_time = time.time()
-            plain_text = crack_sha_hash(
+            plain_text, total_attempts = crack_sha_hash(
                 hash_type=hash_algorithm,
                 hash_str=hash_str,
                 wordlist=wordlist,
@@ -64,7 +64,8 @@ def commandline_args():
 
         if plain_text:
             print(
-                f"Password Found: {B.LIGHTRED_EX}{F.BLACK} {plain_text} {F.RESET}{B.RESET}"
+                f"Password found: {B.LIGHTRED_EX}{F.BLACK} {plain_text} {F.RESET}{B.RESET}"
+                f"\nTotal attempts: {total_attempts}"
             )
             print(f"Time elapsed: {time_elapsed:.1f}s")
     else:
